@@ -6,8 +6,13 @@ RUN git clone https://github.com/Berico-Technologies/CLAVIN-rest
 
 WORKDIR /opt/CLAVIN-rest
 RUN mvn package && cp target/clavin-rest-0.2.0.jar clavin-rest.jar
-ADD allCountries.zip /opt/CLAVIN-rest/allCountries.zip
-RUN unzip allCountries.zip
+
+# Get geonames data
+# Or add local:
+# ADD allCountries.zip /opt/CLAVIN/allCountries.zip
+RUN curl -O http://download.geonames.org/export/dump/allCountries.zip && \
+	unzip allCountries.zip && \
+	rm allCountries.zip
 RUN java -Xmx4096m -jar clavin-rest.jar index clavin-rest.yml
 
 #CMD ["java","-Xmx2048m -jar clavin-rest.jar server clavin-rest.yml"]
