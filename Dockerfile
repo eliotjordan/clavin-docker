@@ -15,5 +15,4 @@ RUN curl -O http://download.geonames.org/export/dump/allCountries.zip && \
 	rm allCountries.zip
 RUN java -Xmx4096m -jar clavin-rest.jar index clavin-rest.yml
 
-#CMD ["java","-Xmx2048m -jar clavin-rest.jar server clavin-rest.yml"]
-CMD /bin/bash
+CMD java -Xmx2048m -jar clavin-rest.jar server clavin-rest.yml
