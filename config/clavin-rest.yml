@@ -1,0 +1,15 @@
+luceneDir: IndexDirectory
+maxHitDepth: 3
+maxContextWindow: 5
+fuzzy: true
+
+
+http:
+  port: 9090
+  adminPort: 9091
+  rootPath: /api/*  
+
+assets:
+  overrides:
+    /: src/main/resources/assets/
+

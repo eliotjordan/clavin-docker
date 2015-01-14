@@ -13,6 +13,8 @@ RUN mvn package && cp target/clavin-rest-0.2.0.jar clavin-rest.jar
 RUN curl -O http://download.geonames.org/export/dump/allCountries.zip && \
 	unzip allCountries.zip && \
 	rm allCountries.zip
-RUN java -Xmx4096m -jar clavin-rest.jar index clavin-rest.yml
+RUN rm clavin-rest.yml
+ADD config/clavin-rest.yml /opt/config/clavin-rest.yml
+RUN java -Xmx4096m -jar clavin-rest.jar index /opt/config/clavin-rest.yml
 
-CMD java -Xmx2048m -jar clavin-rest.jar server clavin-rest.yml
+CMD java -Xmx2048m -jar clavin-rest.jar server /opt/config/clavin-rest.yml
